@@ -1,8 +1,8 @@
 <?php
-class Ponto_Interesse extends CI_Model
+class Campo extends CI_Model
 {   
     /**
-     * Salva um ponto de interesse.
+     * Salva o cadastro de um novo campo.
      * 
      * @param  array $info
      * @return int last inserted id
@@ -12,10 +12,10 @@ class Ponto_Interesse extends CI_Model
     {
         $sql = '
             INSERT INTO 
-                PontoInteresse (
-                    nomePonto, latitude, longitude
+                categoria (
+                    nomeCampo, tipoCampo
                 ) VALUES (
-                    ?, ?, ?
+                    ?, ?
                 )
         ';
         $info[] = $idCategoria;
@@ -25,23 +25,23 @@ class Ponto_Interesse extends CI_Model
             return $this->db->insert_id();
         }
         
-        throw new RuntimeException('Cadastro de ponto não efetuado!');
+        throw new RuntimeException('Cadastro de campo não efetuado!');
     }
     
     /**
-     * Recupera um ponto pelo seu id
+     * Procura um campo pelo seu endereço
      * 
      * @param type $id
-     * @return object ponto
+     * @return object campo
      * @throws RuntimeException
      */
     public function getById($id)
     {
         $sql= '
             SELECT
-                nomePonto, latitude, longitude
+                nomeCampo, tipoCampo
             FROM
-                PontoInteresse
+                campo
             WHERE 
                 id = ?
         ';
@@ -49,13 +49,13 @@ class Ponto_Interesse extends CI_Model
         if ($query->num_rows() > 0 ){
             return $query->row();
         } else {
-            throw new RuntimeException('Ponto não encontrado!');
+            throw new RuntimeException('Campo não encontrado!');
         }
         
     }
     
     /**
-     * Lista todos os pontos cadastrados.
+     * Lista todas os pontos.
      * 
      * @return type
      * @throws RuntimeException
@@ -66,34 +66,32 @@ class Ponto_Interesse extends CI_Model
             SELECT
                 *
             FROM
-                PontoInteresse
-                
+                campo
         ';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0 ) {
                return $query->result();
         } else {
-            throw new RuntimeException('Não existem pontos cadastrados.');
+            throw new RuntimeException('Não existem campos cadastrados.');
         }
     }
     
     /**
-     * Atualiza o cadastro de de um ponto
+     * Atualiza o cadastro de um campo
      * 
      * @param type $id
      * @param array $dados
      * @return boolean
      * @throws RuntimeException
      */
-    public function updatePessoa($id, array $dados)
+    public function updateCampo($id, array $dados)
     {
         $sql= '
             UPDATE
-                PontoInteresse
+                campo
             SET
-                nomePonto = ?,
-                latitude = ?,
-                longitude = ?
+                nomeCampo = ?,
+                tipoCampo = ?
             WHERE
                 id = ?
         ';
@@ -105,20 +103,20 @@ class Ponto_Interesse extends CI_Model
             return true;
         }
         
-        throw new RuntimeException('Ponto nao atualizado!');
+        throw new RuntimeException('Campo não atualizado!');
     }
     
     /**
-     * Deleta o cadastro do ponto
+     * Deleta o cadastro de um campo
      * 
      * @param type $id
      * @return boolean
      * @throws RuntimeException
      */
-    public function deletePonto($id)
+    public function deleteCampo($id)
     {
         $sql = '
-            DELETE FROM PontoInteresse WHERE id = ?
+            DELETE FROM campo WHERE id = ?
         ';
         $this->db->query($sql, $id);
         
@@ -126,7 +124,8 @@ class Ponto_Interesse extends CI_Model
             return true;
         }
         
-        throw new RuntimeException('Erro ao deletar ponto!');
+        throw new RuntimeException('Erro ao deletar campo!');
     }
 
+    
 }
