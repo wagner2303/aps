@@ -1,37 +1,25 @@
-/*==============================================================*/
-/* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     22/03/2014 21:34:08                          */
-/*==============================================================*/
+drop table if exists Categoria cascade;
 
+drop table if exists Campo cascade;
 
-drop table Campo;
+drop table if exists PontoInteresse cascade;
 
-drop table Categoria;
+drop table if exists Dado cascade;
 
-drop table Dado;
+drop table if exists TData cascade;
 
-drop table PontoInteresse;
+drop table if exists TInteiro cascade;
 
-drop table TData;
+drop table if exists TReal cascade;
 
-drop table TInteiro;
+drop table if exists TString cascade;
 
-drop table TReal;
-
-drop table TString;
-
-/*==============================================================*/
-/* Table: Categoria                                             */
-/*==============================================================*/
 create table Categoria (
    idCategoria          INT4                 not null,
    nomeCategoria        VARCHAR(254)         not null,
    constraint PK_CATEGORIA primary key (idCategoria)
 );
 
-/*==============================================================*/
-/* Table: Campo                                                 */
-/*==============================================================*/
 create table Campo (
    idCampo              INT8                 not null,
    idCategoria          INT4                 null,
@@ -43,9 +31,6 @@ create table Campo (
       on delete restrict on update restrict
 );
 
-/*==============================================================*/
-/* Table: PontoInteresse                                        */
-/*==============================================================*/
 create table PontoInteresse (
    idPonto              INT8                 not null,
    idCategoria          INT4                 null,
@@ -58,9 +43,6 @@ create table PontoInteresse (
       on delete restrict on update restrict
 );
 
-/*==============================================================*/
-/* Table: Dado                                                  */
-/*==============================================================*/
 create table Dado (
    idDado               INT8                 not null,
    idCampo              INT8                 null,
@@ -75,9 +57,6 @@ create table Dado (
       on delete restrict on update restrict
 );
 
-/*==============================================================*/
-/* Table: TData                                                 */
-/*==============================================================*/
 create table TData (
    idDado               INT8                 not null,
    valor                DATE                 not null,
@@ -87,9 +66,6 @@ create table TData (
       on delete restrict on update restrict
 );
 
-/*==============================================================*/
-/* Table: TInteiro                                              */
-/*==============================================================*/
 create table TInteiro (
    idDado               INT8                 not null,
    valor                INT4                 not null,
@@ -99,9 +75,6 @@ create table TInteiro (
       on delete restrict on update restrict
 );
 
-/*==============================================================*/
-/* Table: TReal                                                 */
-/*==============================================================*/
 create table TReal (
    idDado               INT8                 not null,
    valor                NUMERIC              not null,
@@ -111,9 +84,6 @@ create table TReal (
       on delete restrict on update restrict
 );
 
-/*==============================================================*/
-/* Table: TString                                               */
-/*==============================================================*/
 create table TString (
    idDado               INT8                 not null,
    valor                VARCHAR(254)         not null,
@@ -123,3 +93,8 @@ create table TString (
       on delete restrict on update restrict
 );
 
+CREATE INDEX fk_idcategoria_index ON campo USING btree (idcategoria);
+
+CREATE INDEX fk_idcategoria_ponto_index ON pontointeresse USING btree (idcategoria);
+
+CREATE INDEX fk_idponto_index ON dado USING btree (idponto);
