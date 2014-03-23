@@ -1,6 +1,7 @@
 <?php
-class Categoria extends CI_Model
-{   
+
+class Categoria extends CI_Model {
+
     /**
      * Cadastra uma categoria
      * 
@@ -8,8 +9,7 @@ class Categoria extends CI_Model
      * @return int inserted id
      * @throws RuntimeException
      */
-    public function save(array $info )
-    {
+    public function save(array $info) {
         $sql = '
             INSERT INTO 
                 categoria (
@@ -18,26 +18,25 @@ class Categoria extends CI_Model
                     ? 
                 )
         ';
-        
-        $this->db->query ($sql, $info);
-        
+
+        $this->db->query($sql, $info);
+
         if ($this->db->affected_rows() == 1) {
             return $this->db->insert_id();
         }
-        
+
         throw new RuntimeException('Categoria não cadastrada!');
     }
-    
+
     /**
-     * Mostra as categorias
+     * Busca uma categori por id
      * 
      * @param type $id
      * @return object categoria
      * @throws RuntimeException
      */
-    public function listCategoria($id)
-    {
-        $sql= '
+    public function findCategoria($id) {
+        $sql = '
             SELECT
                 nomeCategoria
             FROM
@@ -45,16 +44,35 @@ class Categoria extends CI_Model
             WHERE
                 id = ?
         ';
-        
+
         $query = $this->db->query($sql, $id);
-        
-        if ($query->num_rows() > 0 ) {
-               return $query->result();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
         } else {
             throw new RuntimeException('Essa categoria não existe!');
         }
     }
     
+     public function listAll()
+    {
+        $sql= '
+            SELECT
+                *
+            FROM
+                categoria
+            ORDER BY
+                nomeCategoria ASC
+                
+        ';
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0 ) {
+               return $query->result();
+        } else {
+            throw new RuntimeException('Não existem categorias cadastradas.');
+        }
+    }
+
     /**
      * Atualiza categoria
      * 
@@ -63,9 +81,8 @@ class Categoria extends CI_Model
      * @return boolean
      * @throws RuntimeException
      */
-    public function updateCategoria($id, array $dados)
-    {
-        $sql= '
+    public function updateCategoria($id, array $dados) {
+        $sql = '
             UPDATE
                 categoria
             SET
@@ -73,14 +90,14 @@ class Categoria extends CI_Model
             WHERE
                 id = ?
         ';
-        
+
         array_push($dados, $id);
         $this->db->query($sql, $dados);
-        
+
         if ($this->db->affected_rows() == 1) {
             return true;
         }
-        
+
         throw new RuntimeException('Categoria não atualizada!');
     }
 
@@ -91,8 +108,7 @@ class Categoria extends CI_Model
      * @throws RuntimeException
      * @return int last inserted id
      */
-    public function deleteAddress($id)
-    {
+    public function deleteCategoria($id) {
         $this->db->query('
             DELETE FROM categoria WHERE id = ?
         ', $id);
@@ -103,5 +119,5 @@ class Categoria extends CI_Model
 
         return $this->db->insert_id();
     }
-    
+
 }
