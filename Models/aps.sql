@@ -28,7 +28,7 @@ create table Campo (
    constraint PK_CAMPO primary key (idCampo),
    constraint FK_CAMPO_ASSOCIATI_CATEGORI foreign key (idCategoria)
       references Categoria (idCategoria)
-      on delete restrict on update restrict
+      on delete cascade on update restrict
 );
 
 create table PontoInteresse (
@@ -40,7 +40,7 @@ create table PontoInteresse (
    constraint PK_PONTOINTERESSE primary key (idPonto),
    constraint FK_PONTOINT_ASSOCIATI_CATEGORI foreign key (idCategoria)
       references Categoria (idCategoria)
-      on delete restrict on update restrict
+      on delete cascade on update restrict
 );
 
 create table Dado (
@@ -51,10 +51,10 @@ create table Dado (
    constraint PK_DADO primary key (idDado),
    constraint FK_DADO_ASSOCIATI_PONTOINT foreign key (idPonto)
       references PontoInteresse (idPonto)
-      on delete restrict on update restrict,
+      on delete cascade on update restrict,
    constraint FK_DADO_ASSOCIATI_CAMPO foreign key (idCampo)
       references Campo (idCampo)
-      on delete restrict on update restrict
+      on delete cascade on update restrict
 );
 
 create table TData (
@@ -63,7 +63,7 @@ create table TData (
    constraint PK_TDATA primary key (idDado),
    constraint FK_TDATA_GENERALIZ_DADO foreign key (idDado)
       references Dado (idDado)
-      on delete restrict on update restrict
+      on delete cascade on update restrict
 );
 
 create table TInteiro (
@@ -72,7 +72,7 @@ create table TInteiro (
    constraint PK_TINTEIRO primary key (idDado),
    constraint FK_TINTEIRO_GENERALIZ_DADO foreign key (idDado)
       references Dado (idDado)
-      on delete restrict on update restrict
+      on delete cascade on update restrict
 );
 
 create table TReal (
@@ -81,7 +81,7 @@ create table TReal (
    constraint PK_TREAL primary key (idDado),
    constraint FK_TREAL_GENERALIZ_DADO foreign key (idDado)
       references Dado (idDado)
-      on delete restrict on update restrict
+      on delete cascade on update restrict
 );
 
 create table TString (
@@ -90,7 +90,7 @@ create table TString (
    constraint PK_TSTRING primary key (idDado),
    constraint FK_TSTRING_GENERALIZ_DADO foreign key (idDado)
       references Dado (idDado)
-      on delete restrict on update restrict
+      on delete cascade on update restrict
 );
 
 CREATE INDEX fk_idcategoria_index ON campo USING btree (idcategoria);
