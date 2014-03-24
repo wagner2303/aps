@@ -18,7 +18,6 @@ class Categoria extends CI_Model {
                     ? 
                 )
         ';
-
         $this->db->query($sql, $info);
 
         if ($this->db->affected_rows() == 1) {
