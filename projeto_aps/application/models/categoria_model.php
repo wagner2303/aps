@@ -1,6 +1,11 @@
 <?php
 
-class Categoria extends CI_Model {
+class Categoria_model extends Model {
+
+    function User_model()
+    {
+        parent::Model();
+    }
 
     /**
      * Cadastra uma categoria

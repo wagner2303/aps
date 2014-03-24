@@ -2,9 +2,9 @@
 <html>
 	<title>SMIP</title>
 	<head>
-		<link rel="stylesheet" href="leaflet/leaflet.css" />
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
 
-		<script type="text/javascript" src="leaflet/leaflet.js"></script>
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 
 		<style>
 		#map {
