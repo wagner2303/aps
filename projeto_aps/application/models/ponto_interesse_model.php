@@ -85,7 +85,7 @@ class Ponto_Interesse extends CI_Model
      * @return boolean
      * @throws RuntimeException
      */
-    public function updatePessoa($id, array $dados)
+    public function updatePonto($id, array $dados)
     {
         $sql= '
             UPDATE
