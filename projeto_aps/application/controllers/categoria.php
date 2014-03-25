@@ -24,7 +24,6 @@ class Categoria extends CI_Controller
     
     public function cadastrar2()
     {
-        $this->load->model('categoria_model');
         if ($this->form_validation->run() === true) {
             try {
                 $this->categoria_model->save(array(
