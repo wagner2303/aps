@@ -22,6 +22,23 @@ class Categoria extends CI_Controller
          
     }
     
+    public function cadastrar2()
+    {
+        $this->load->model('categoria_model');
+        if ($this->form_validation->run() === true) {
+            try {
+                $this->categoria_model->save(array(
+                    $this->input->post('nomeCategoria'),
+                ));   
+                $this->session->set_flashdata('message', 'Cadastro feito com sucesso!');
+           } catch (Exception $e) {
+                $this->session->set_flashdata('message', $e->getMessage());
+            }
+        } else {
+            $this->load->view('categoria2_view'); //Chamar a view certa aqui também =P
+        }
+    }
+
     public function cadastrar()
     {
         $this->load->model('categoria_model');

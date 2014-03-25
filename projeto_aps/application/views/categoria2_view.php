@@ -5,14 +5,12 @@
 	<body>
 		  <div id="dialog-form" title="Create new user" style="display:none">
 		 
-		  <form method="post">
+		  <form method="post" action="localhost/aps/projeto_aps/index.php/categoria/cadastro2">
 		  <fieldset>
 		    <label for="name">Nome</label>
-		    <input type="text" name="name" id="name" >
-		    <label for="email">Tipo</label>
-		    <input type="text" name="email" id="email" value="" >
+		    <input type="text" name="nomeCategoria" id="nomeCategoria" >
 		  </fieldset>
-		  <input type="submit" value="Próximo" action="confirma.php" />
+		  <input type="submit" value="Próximo"/>
 		  </form>
 		</div>
 	</body>
