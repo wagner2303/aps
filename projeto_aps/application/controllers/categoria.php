@@ -34,7 +34,7 @@ class Categoria extends CI_Controller
                 $this->session->set_flashdata('message', $e->getMessage());
             }
         } else {
-            $this->load->view('categoria_view'); //Chamar a view certa aqui também =P
+            $this->load->view('categoria2_view'); //Chamar a view certa aqui também =P
         }
     }
     
