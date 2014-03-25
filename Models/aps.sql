@@ -15,13 +15,13 @@ drop table if exists TReal cascade;
 drop table if exists TString cascade;
 
 create table Categoria (
-   idCategoria          INT4                 not null,
+   idCategoria          SERIAL,
    nomeCategoria        VARCHAR(254)         not null,
    constraint PK_CATEGORIA primary key (idCategoria)
 );
 
 create table Campo (
-   idCampo              INT8                 not null,
+   idCampo              BIGSERIAL,
    idCategoria          INT4                 null,
    nomeCampo            VARCHAR(254)         not null,
    tipoCampo            INT4                 not null,
@@ -32,7 +32,7 @@ create table Campo (
 );
 
 create table PontoInteresse (
-   idPonto              INT8                 not null,
+   idPonto              BIGSERIAL,
    idCategoria          INT4                 null,
    nomePonto            VARCHAR(254)         not null,
    latitude             NUMERIC              not null,
@@ -44,7 +44,7 @@ create table PontoInteresse (
 );
 
 create table Dado (
-   idDado               INT8                 not null,
+   idDado               BIGSERIAL,
    idCampo              INT8                 null,
    idPonto              INT8                 null,
    valor                VARCHAR(254)         null,
