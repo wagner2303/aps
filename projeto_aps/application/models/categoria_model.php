@@ -4,7 +4,6 @@ class Categoria_model extends CI_Model {
     
      public function __construct() {
         parent::__construct();
-        $this->load->database();
      }
 
     
@@ -17,15 +16,15 @@ class Categoria_model extends CI_Model {
      * @throws RuntimeException
      */
     public function save(array $info) {
-        $sql = '
-            INSERT INTO 
-                categoria (
-                    nomeCategoria
-                ) VALUES (
-                    ? 
-                )
-        ';
-        $this->db->query($sql, $info);
+//        $sql = '
+//            INSERT INTO 
+//                categoria (
+//                    nomeCategoria
+//                ) VALUES (
+//                    ? 
+//                )
+//        ';
+        $this->db->insert('categoria', $info);
 
         if ($this->db->affected_rows() == 1) {
             return $this->db->insert_id();

@@ -3,11 +3,10 @@
 	<head>
 	</head>
 	<body>
-		  <form method="post" action="categoria/cadastrar2">
+		  <form method="post" action="categoria/cadastrar2" enctype="multipart/form-data">
 		    <label for="name">Nome</label>
 		    <input type="text" name="nomeCategoria" id="nomeCategoria" >
-                    
-		  <input type="submit" value="Próximo"/>
+                    <input type="submit" value="Próximo"/>
 		  </form>
 	</body>
 </html>

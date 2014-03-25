@@ -24,16 +24,17 @@ class Categoria extends CI_Controller
     
     public function cadastrar2()
     {
-        if ($this->form_validation->run() === true) {
+        if ($this->form_validation->run()) {
             try {
                 $this->categoria_model->save(array(
-                    $this->input->post('nomeCategoria'),
+                   'nomecategoria' => $this->input->post('nomeCategoria'),
                 ));   
                 $this->session->set_flashdata('message', 'Cadastro feito com sucesso!');
            } catch (Exception $e) {
                 $this->session->set_flashdata('message', $e->getMessage());
             }
         } else {
+//            die("FILHO DA MÂE");
             $this->load->view('categoria2_view'); //Chamar a view certa aqui também =P
         }
     }
@@ -41,12 +42,13 @@ class Categoria extends CI_Controller
     public function cadastrar()
     {
         $this->load->model('categoria_model');
-        if ($this->form_validation->run() === true) {
+        if ($this->form_validation->run()) {
             try {
                 $this->categoria_model->save(array(
                     $this->input->post('nomeCategoria'),
                 ));   
                 $this->session->set_flashdata('message', 'Cadastro feito com sucesso!');
+                redirect('categoria');
            } catch (Exception $e) {
                 $this->session->set_flashdata('message', $e->getMessage());
             }
