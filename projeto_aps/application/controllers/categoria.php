@@ -9,10 +9,11 @@ class Categoria extends CI_Controller
 {
     public function __construct() {
         parent::__construct();
-//        $this->load->helper('url_helper');
-//        $this->load->library(array ('form_validation', 'session'));
-//        $this->form_validation->set_rules('nomeCategoria', 'Nome Categoria', 'required|max_length[50]');
-//        $this->form_validation->set_message('required', 'O Campo %s é obrigatório!');
+        $this->load->model('categoria_model');
+        $this->load->helper('url_helper');
+        $this->load->library(array ('form_validation', 'session'));
+        $this->form_validation->set_rules('nomeCategoria', 'Nome Categoria', 'required|max_length[50]');
+        $this->form_validation->set_message('required', 'O Campo %s é obrigatório!');
     }
     
      public function index()

@@ -30,18 +30,18 @@
  */
 class CI_DB_driver {
 
-	var $username;
-	var $password;
-	var $hostname;
-	var $database;
-	var $dbdriver		= 'mysql';
+	var $username = 'aplicacao';
+	var $password = '123456' ;
+	var $hostname = 'localhost';
+	var $database = 'aps';
+	var $dbdriver		= 'postgre';
 	var $dbprefix		= '';
 	var $char_set		= 'utf8';
 	var $dbcollat		= 'utf8_general_ci';
 	var $autoinit		= TRUE; // Whether to automatically initialize the DB
 	var $swap_pre		= '';
-	var $port			= '';
-	var $pconnect		= FALSE;
+	var $port			= 5432;
+	var $pconnect		= TRUE;
 	var $conn_id		= FALSE;
 	var $result_id		= FALSE;
 	var $db_debug		= FALSE;
