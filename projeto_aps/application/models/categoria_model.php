@@ -2,7 +2,7 @@
 
 class Categoria_model extends Model {
 
-    function User_model()
+    function Categoria_model()
     {
         parent::Model();
         $this->load->helper('url_helper');
