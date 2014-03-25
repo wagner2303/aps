@@ -1,6 +1,9 @@
 <?php
-class Tipo_Real extends CI_Model
-{   
+class Tipo_real_model extends CI_Model {
+    
+     public function __construct() {
+        parent::__construct();
+     }  
     /**
      * Cadastra um tipo inteiro
      * @param array $info
@@ -21,7 +24,7 @@ class Tipo_Real extends CI_Model
         $this->db->query ($sql, $info);
         
         if ($this->db->affected_rows() == 1) {
-            return $this->db->insert_id();
+            return true;
         }
         
         throw new RuntimeException('Valor não cadastrado!');
@@ -100,7 +103,7 @@ class Tipo_Real extends CI_Model
             throw new RuntimeException('Erro ao deletar valor.');
         }
 
-        return $this->db->insert_id();
+        return true;
     }
     
 }

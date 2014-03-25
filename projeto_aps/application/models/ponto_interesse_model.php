@@ -1,6 +1,9 @@
 <?php
-class Ponto_Interesse extends CI_Model
-{   
+class Ponto_model extends CI_Model {
+    
+     public function __construct() {
+        parent::__construct();
+     }   
     /**
      * Salva um ponto de interesse.
      * 
@@ -8,7 +11,7 @@ class Ponto_Interesse extends CI_Model
      * @return int last inserted id
      * @throws RuntimeException
      */
-    public function save(array $info, $idCategoria)
+    public function save(array $info)
     {
         $sql = '
             INSERT INTO 
@@ -18,11 +21,10 @@ class Ponto_Interesse extends CI_Model
                     ?, ?, ?
                 )
         ';
-        $info[] = $idCategoria;
         $this->db->query($sql, $info);
         
         if ($this->db->affected_rows() == 1) {
-            return $this->db->insert_id();
+            return true;
         }
         
         throw new RuntimeException('Cadastro de ponto não efetuado!');

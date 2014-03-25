@@ -16,18 +16,20 @@ class Categoria_model extends CI_Model {
      * @throws RuntimeException
      */
     public function save(array $info) {
-//        $sql = '
-//            INSERT INTO 
-//                categoria (
-//                    nomeCategoria
-//                ) VALUES (
-//                    ? 
-//                )
-//        ';
-        $this->db->insert('categoria', $info);
+        $sql = '
+            INSERT INTO 
+                categoria (
+                    nomeCategoria
+                ) VALUES (
+                    ? 
+                )
+        ';
+        $this->db->query($sql, $info);
+        
+//        $this->db->insert('categoria', $info);
 
         if ($this->db->affected_rows() == 1) {
-            return $this->db->insert_id();
+            return true;
         }
 
         throw new RuntimeException('Categoria não cadastrada!');
@@ -122,7 +124,7 @@ class Categoria_model extends CI_Model {
             throw new RuntimeException('Ocorreu um erro ao deletar essa categoria');
         }
 
-        return $this->db->insert_id();
+        return true;
     }
 
 }

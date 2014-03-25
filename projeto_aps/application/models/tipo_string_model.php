@@ -1,6 +1,9 @@
 <?php
-class Tipo_String extends CI_Model
-{   
+class Tipo_string_model extends CI_Model {
+    
+     public function __construct() {
+        parent::__construct();
+     }
     /**
      * Cadastra um tipo inteiro
      * @param array $info
@@ -100,7 +103,7 @@ class Tipo_String extends CI_Model
             throw new RuntimeException('Erro ao deletar valor.');
         }
 
-        return $this->db->insert_id();
+        return true;
     }
     
 }

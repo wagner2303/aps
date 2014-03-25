@@ -1,6 +1,9 @@
 <?php
-class Tipo_Data extends CI_Model
-{   
+class Tipo_data_model extends CI_Model {
+    
+     public function __construct() {
+        parent::__construct();
+     }  
     /**
      * Cadastra um tipo data
      * @param array $info
@@ -21,7 +24,7 @@ class Tipo_Data extends CI_Model
         $this->db->query ($sql, $info);
         
         if ($this->db->affected_rows() == 1) {
-            return $this->db->insert_id();
+            return true;
         }
         
         throw new RuntimeException('Data não cadastrada!');
@@ -100,7 +103,7 @@ class Tipo_Data extends CI_Model
             throw new RuntimeException('Erro ao deletar data.');
         }
 
-        return $this->db->insert_id();
+        return true;
     }
     
 }

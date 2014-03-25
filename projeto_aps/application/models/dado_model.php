@@ -1,6 +1,9 @@
 <?php
-class Dado extends CI_Model
-{   
+class Dado_model extends CI_Model {
+    
+     public function __construct() {
+        parent::__construct();
+     }  
     /**
      * Salva o cadastro de um novo dado.
      * 
@@ -8,7 +11,7 @@ class Dado extends CI_Model
      * @return int last inserted id
      * @throws RuntimeException
      */
-    public function save(array $info, $idCampo, $idPontoInteresse)
+    public function save(array $info)
     {
         $sql = '
             INSERT INTO 
@@ -18,12 +21,10 @@ class Dado extends CI_Model
                     ?
                 )
         ';
-        $info[] = $idCampo;
-        $info2[] = $idPontoInteresse;
-        $this->db->query($sql, $info, $info2);
+        $this->db->query($sql, $info);
         
         if ($this->db->affected_rows() == 1) {
-            return $this->db->insert_id();
+            return true;
         }
         
         throw new RuntimeException('Cadastro de dado não efetuado!');
