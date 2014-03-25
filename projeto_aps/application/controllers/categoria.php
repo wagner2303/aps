@@ -10,6 +10,7 @@ class Categoria extends CI_Controller
     public function __construct() {
         parent::__construct();
         $this->load->model('categoria_model');
+        $this->load->model('campo_model');
         $this->load->helper('url_helper');
         $this->load->library(array ('form_validation', 'session'));
         $this->form_validation->set_rules('nomeCategoria', 'Nome Categoria', 'required|max_length[50]');
@@ -28,7 +29,18 @@ class Categoria extends CI_Controller
             try {
                 $this->categoria_model->save(array(
                 $this->input->post('nomeCategoria')
-                ));   
+                
+                ));
+                $ncampos = $_POST['nomeCampo'];
+                $tcampos = $_POST['tipoCampo'];
+                $quantidade = count($ncampos);
+                for($i = 0; $i<quantidade; $i++){
+                    $this->campo_model->save(array(
+                    $this->input->$ncampos[$i],
+                    $this->input->$tcampos[$i]
+                ));
+                }
+                
                 $this->session->set_flashdata('message', 'Cadastro feito com sucesso!');
            } catch (Exception $e) {
                 $this->session->set_flashdata('message', $e->getMessage());
