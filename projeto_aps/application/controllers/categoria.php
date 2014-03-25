@@ -18,7 +18,7 @@ class Categoria extends CI_Controller
     
      public function index()
     {
-        $this->load->view('categoria_view');// Chamar a view correta quando criada
+        $this->load->view('categoria2_view');// Chamar a view correta quando criada
          
     }
     
