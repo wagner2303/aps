@@ -41,7 +41,6 @@ class Categoria extends CI_Controller
     
     public function mostrarCategoria($id)
     {
-        $this->load->model('categoria_model');
         try {
             $vetor = $this->categoria_model->getById($id);
             $this->load->view('categoria_view', array(
@@ -54,7 +53,6 @@ class Categoria extends CI_Controller
     
     public function mostrarTodasCategorias()
     {
-        $this->load->model('categoria_model');
         try {
             $categoria = $this->categoria_model->listAll();
             $this->load->view('categoria_view', array(
@@ -68,7 +66,6 @@ class Categoria extends CI_Controller
    
     public function atualizarCategoria($id)
     {
-        $this->load->model('categoria_model');
         try {
             $categoria = $this->categoria_model->getById($id);
             if ($this->input->post()) {
@@ -94,7 +91,6 @@ class Categoria extends CI_Controller
     
     public function apagarCategoria($id)
     {
-        $this->load->model('categoria_model');
         try {
             $this->categoria_model->deleteCategoria($id);
             $this->session->set_flashdata('feedback', 'Categoria excluida com sucesso!');
